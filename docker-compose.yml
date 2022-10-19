@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  mars-picture-service:
+    image: mars-picture-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - redis
+      - nasa-proxy
+
+  nasa-proxy:
+    image: tboychuk/lmps
+    expose:
+      - "8080"
+
+  redis:
+    image: redis
+    expose:
+      - "6379"
